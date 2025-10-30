@@ -152,6 +152,36 @@ fetch(`${apiBaseUrl}/api/piacoks`, {
             </div>
         `;
         
+        marketsGrid.appendChild(marketCard);
+        
+        // Dinamikus betűméret-csökkentés, ha a városnév túl hosszú
+        const cityElement = marketCard.querySelector('.market-city');
+        const headerElement = marketCard.querySelector('.market-header');
+        const dateBadge = marketCard.querySelector('.market-date-badge');
+        
+        // Várunk egy kicsit, hogy a DOM renderelődjön
+        requestAnimationFrame(() => {
+          const headerWidth = headerElement.offsetWidth;
+          const cityWidth = cityElement.scrollWidth;
+          const badgeWidth = dateBadge.offsetWidth;
+          const gap = 12; // gap a header-ben
+          
+          // Ha a városnév + dátum buborék + gap nem fér ki
+          if (cityWidth + badgeWidth + gap > headerWidth) {
+            // Csökkentjük a betűméretet fokozatosan
+            let fontSize = 1.25;
+            cityElement.style.fontSize = `${fontSize}rem`;
+            
+            // Maximum 5 iteráció, hogy ne legyen végtelen ciklus
+            let iterations = 0;
+            while (cityElement.scrollWidth + badgeWidth + gap > headerWidth && fontSize > 0.9 && iterations < 10) {
+              fontSize -= 0.05;
+              cityElement.style.fontSize = `${fontSize}rem`;
+              iterations++;
+            }
+          }
+        });
+        
         // Hover effekt és kattintás kezelés az egész card-ra
         marketCard.addEventListener("mouseenter", () => {
           marketCard.style.transform = "translateY(-4px)";

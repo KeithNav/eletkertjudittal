@@ -137,6 +137,7 @@ body {
             justify-content: space-between;
             align-items: start;
             margin-bottom: 12px;
+            gap: 12px;
         }
 
         .market-city {
@@ -144,6 +145,8 @@ body {
             font-weight: 700;
             color: var(--primary-600);
             margin: 0;
+            flex: 1;
+            min-width: 0;
         }
 
         .market-date-badge {
