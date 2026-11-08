@@ -43,5 +43,14 @@ npm run build                              # vite build (dist\), ugyanez fut a d
 
 - Az `eletkert\.env` tartalmazza a `VITE_API` (Strapi URL) és `VITE_API_TOKEN` értékeket; ez már az éles API-ra
   mutat, nem kell módosítani build előtt.
-- Új oldal (route) esetén vedd fel a `vite.config.js` `rollupOptions.input` listájába és a `public\sitemap.xml`-be;
-  az nginx a `try_files $uri $uri/ $uri.html` szabállyal a `/<oldal>` URL-t a `<oldal>.html` fájlból szolgálja ki.
+- Felépítés: `src\common.js` (menü, görgetés; minden oldalon), `src\script.js` (főoldal belépési pont),
+  `src\markets.js` (piac-kártyák), `src\map.js` (Leaflet; csak akkor töltődik be, ha a térkép közel kerül a
+  látható területhez vagy rákattintanak egy piacra). Betűtípusok: `@fontsource` (saját szerverről, nincs Google Fonts).
+- **Piacok:** csak a mai vagy későbbi (magyar idő szerinti) napra eső tételek jelennek meg, a múltbeliek nem – akkor
+  sem, ha a backendben még szerepelnek (`src\util.js` `isUpcoming`, az API-lekérdezés is szűr).
+- Minden oldal `<head>`-jében egyedi `title`/`description`, `canonical`, Open Graph; a főoldalon JSON-LD
+  (`WebSite`, `Organization`). Új oldalnál ezeket is töltsd ki, és vedd fel a `public\sitemap.xml`-be
+  (hash-es `#...` URL-ek nem kellenek a sitemapbe).
+- Új oldal (route) esetén vedd fel a `vite.config.js` `rollupOptions.input` listájába, a `public\sitemap.xml`-be és az
+  `deploy\nginx-eletkert-frontend.conf` `.html` -> kiterjesztés nélküli átirányítási listájába; az nginx a
+  `try_files $uri $uri/ $uri.html` szabállyal a `/<oldal>` URL-t a `<oldal>.html` fájlból szolgálja ki.

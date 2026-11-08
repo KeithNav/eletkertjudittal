@@ -1,7 +1,8 @@
-/* Modern, letisztult font importálása */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-/* Elegáns, címsorhoz használt serif betű a bemutatkozó részhez */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap');
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/600.css';
+@import '@fontsource/inter/700.css';
+@import '@fontsource/playfair-display/600.css';
+@import '@fontsource/playfair-display/700.css';
 
 :root {
   --primary-900: #2c0b0b;
@@ -105,7 +106,28 @@ body {
             margin: 0 auto 40px auto;
         }
 
+        .markets-empty {
+            grid-column: 1 / -1;
+            text-align: center;
+            color: var(--neutral-700);
+            font-size: 1.1rem;
+            padding: 24px 12px;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
         .market-card {
+            position: relative;
             background: #ffffff;
             border-radius: 12px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);

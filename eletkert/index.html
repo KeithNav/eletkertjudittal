@@ -3,23 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Életkert - Őstermelői Lekvárok és Szörpök</title>
+    <title>Életkert – Őstermelői lekvárok, szörpök, teák és befőttek</title>
+    <meta name="description" content="Házi őstermelői lekvárok, szörpök, fermentált italok és teák, adalékanyag nélkül. Nézd meg, melyik piacon találkozhatunk legközelebb!">
+    <link rel="canonical" href="https://eletkertjudittal.hu/">
+    <meta name="theme-color" content="#652324">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="hu_HU">
+    <meta property="og:site_name" content="Életkert">
+    <meta property="og:title" content="Életkert – Őstermelői lekvárok, szörpök, teák és befőttek">
+    <meta property="og:description" content="Házi őstermelői lekvárok, szörpök, fermentált italok és teák, adalékanyag nélkül. Nézd meg, melyik piacon találkozhatunk legközelebb!">
+    <meta property="og:url" content="https://eletkertjudittal.hu/">
+    <meta property="og:image" content="https://eletkertjudittal.hu/stand.jpg">
+    <meta property="og:image:width" content="2048">
+    <meta property="og:image:height" content="1536">
+    <meta property="og:image:alt" content="Az Életkert piaci standja lekvárokkal és szörpökkel">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://strapi.eletkertjudittal.hu">
+    <link rel="preload" as="image" href="/stand-1600.webp" type="image/webp" media="(min-width: 801px)" fetchpriority="high">
+    <link rel="preload" as="image" href="/stand-800.webp" type="image/webp" media="(max-width: 800px)" fetchpriority="high">
     <link rel="stylesheet" href="src/styles.css">
     <link rel="stylesheet" href="src/header.css">
     <link rel="stylesheet" href="src/footer.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="Életkert" />
     <link rel="manifest" href="/site.webmanifest" />
-    <meta name="description" content="Életkert Galéria – Őstermelői lekvárok és szörpök. Fedezd fel a kézműves, természetes ízek világát, ahol minden üvegben benne van a hagyomány és a szeretet.">
-
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "https://eletkertjudittal.hu/#website",
+          "url": "https://eletkertjudittal.hu/",
+          "name": "Életkert",
+          "inLanguage": "hu-HU"
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://eletkertjudittal.hu/#organization",
+          "name": "Életkert",
+          "legalName": "Körmendiné Apostol Judit",
+          "description": "Őstermelői lekvárok, szörpök, fermentált italok és teák adalékanyag nélkül.",
+          "url": "https://eletkertjudittal.hu/",
+          "logo": "https://eletkertjudittal.hu/logo.png",
+          "image": "https://eletkertjudittal.hu/stand.jpg",
+          "telephone": "+36304790925",
+          "email": "kormendine.a.judit@gmail.com",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Árpád utca 11/C",
+            "postalCode": "9111",
+            "addressLocality": "Tényő",
+            "addressCountry": "HU"
+          },
+          "sameAs": [
+            "https://www.facebook.com/eletkertjudittal",
+            "https://www.instagram.com/eletkertjudittal"
+          ]
+        }
+      ]
+    }
+    </script>
 </head>
 <body>
     <header>
+        <h1 class="sr-only">Életkert – őstermelői lekvárok, szörpök, teák és befőttek</h1>
         <div class="header-bar">
             <nav class="nav-left">
                 <a href="#about">Rólam</a>
@@ -65,8 +115,9 @@
             <div class="about-media">
                 <div id="rolamvideo" class="video-responsive-container">
                     <iframe 
-                      src="https://www.youtube.com/embed/Ufqoe2QDbyw?controls=1&modestbranding=1&rel=0" 
+                      src="https://www.youtube-nocookie.com/embed/Ufqoe2QDbyw?controls=1&modestbranding=1&rel=0" 
                       title="Bemutatkozó videó" 
+                      loading="lazy"
                       frameborder="0" 
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                       referrerpolicy="strict-origin-when-cross-origin" 
@@ -127,22 +178,22 @@
         </div>
         <div id="my-gallery" class="pswp-gallery">
             <a href="https://strapi.eletkertjudittal.hu/uploads/lekvarok_55dc000b3b.jpg" data-pswp-width="1200" data-pswp-height="800" data-cropped="true">
-                <img src ="https://strapi.eletkertjudittal.hu/uploads/medium_lekvarok_55dc000b3b.jpg" alt="Lekvár készítés">
+                <img src="https://strapi.eletkertjudittal.hu/uploads/medium_lekvarok_55dc000b3b.jpg" alt="Házi lekvárok készítés közben" loading="lazy" decoding="async">
             </a>
             <a href="https://strapi.eletkertjudittal.hu/uploads/szoerp_9291b6a279.jpg" data-pswp-width="1536" data-pswp-height="2048" data-cropped="true">
-                <img src="https://strapi.eletkertjudittal.hu/uploads/small_szoerp_9291b6a279.jpg" alt="Szörpök">
+                <img src="https://strapi.eletkertjudittal.hu/uploads/small_szoerp_9291b6a279.jpg" alt="Házi szörpök üvegekben" loading="lazy" decoding="async">
             </a>   
             <a href="https://strapi.eletkertjudittal.hu/uploads/stand_00f1075578.jpg" data-pswp-width="2048" data-pswp-height="1536" data-cropped="true">
-                <img src ="https://strapi.eletkertjudittal.hu/uploads/small_stand_00f1075578.jpg" alt="Piaci stand">
+                <img src="https://strapi.eletkertjudittal.hu/uploads/small_stand_00f1075578.jpg" alt="Az Életkert piaci standja" loading="lazy" decoding="async">
             </a>
             <a href ="https://strapi.eletkertjudittal.hu/uploads/tea_3007f35aa0.jpg" data-pswp-width="1536" data-pswp-height="2048" data-cropped="true">
-                <img src="https://strapi.eletkertjudittal.hu/uploads/medium_tea_3007f35aa0.jpg" alt="Teák">
+                <img src="https://strapi.eletkertjudittal.hu/uploads/medium_tea_3007f35aa0.jpg" alt="Gyógynövény- és gyümölcsteák" loading="lazy" decoding="async">
             </a>
             <a href ="https://strapi.eletkertjudittal.hu/uploads/vegyes_ce3bcd5c84.jpg" data-pswp-width="2048" data-pswp-height="1536" data-cropped="true">
-                <img src="https://strapi.eletkertjudittal.hu/uploads/small_vegyes_ce3bcd5c84.jpg" alt="Pult">
+                <img src="https://strapi.eletkertjudittal.hu/uploads/small_vegyes_ce3bcd5c84.jpg" alt="Lekvárok, szörpök és teák a piaci pulton" loading="lazy" decoding="async">
             </a>
             <a href ="https://strapi.eletkertjudittal.hu/uploads/eletkertstand_fc1be99f07.jpg" data-pswp-width="2048" data-pswp-height="1536" data-cropped="true">
-                <img src="https://strapi.eletkertjudittal.hu/uploads/small_eletkertstand_fc1be99f07.jpg" alt="Teák">
+                <img src="https://strapi.eletkertjudittal.hu/uploads/small_eletkertstand_fc1be99f07.jpg" alt="Életkert stand teákkal és lekvárokkal" loading="lazy" decoding="async">
             </a>
             <!-- Adj hozzá több képet szükség szerint -->
         </div>
@@ -156,13 +207,13 @@
         <h2>Videók - Podcastek</h2>
         <div class="videos-grid">
             <div id="youtube-1" class="video-responsive-container">
-                <iframe src="https://www.youtube.com/embed/uZZqD2pFUpY?si=k8tcc_q-Lz_7nxCe" 
-                    title="YouTube videó" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                <iframe src="https://www.youtube-nocookie.com/embed/uZZqD2pFUpY?si=k8tcc_q-Lz_7nxCe" loading="lazy"
+                    title="Életkert videó 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe>
             </div>
             <div id="youtube-2" class="video-responsive-container">
-                <iframe src="https://www.youtube.com/embed/wfzQshLSMvE" 
-                    title="YouTube videó" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                <iframe src="https://www.youtube-nocookie.com/embed/wfzQshLSMvE" loading="lazy"
+                    title="Életkert videó 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen></iframe>
             </div>
         </div>
@@ -185,7 +236,7 @@
                 <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M160.2 25C152.3 6.1 131.7-3.9 112.1 1.4l-5.5 1.5c-64.6 17.6-119.8 80.2-103.7 156.4 37.1 175 174.8 312.7 349.8 349.8 76.3 16.2 138.8-39.1 156.4-103.7l1.5-5.5c5.4-19.7-4.7-40.3-23.5-48.1l-97.3-40.5c-16.5-6.9-35.6-2.1-47 11.8l-38.6 47.2C233.9 335.4 177.3 277 144.8 205.3L189 169.3c13.9-11.3 18.6-30.4 11.8-47L160.2 25z"/></svg>
                 <h3>Hívj fel</h3>
                 <span class="contact-separator"></span>
-                <p>Telefon: <a href="tel:+361234567">+36 30 479 0925</a></p>
+                <p>Telefon: <a href="tel:+36304790925">+36 30 479 0925</a></p>
             </div>
             <div class="contact-item">
                 <svg class="contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M48 64c-26.5 0-48 21.5-48 48 0 15.1 7.1 29.3 19.2 38.4l208 156c17.1 12.8 40.5 12.8 57.6 0l208-156c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48L48 64zM0 196L0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-188-198.4 148.8c-34.1 25.6-81.1 25.6-115.2 0L0 196z"/></svg>
@@ -228,7 +279,7 @@
                     <h4>Kapcsolat</h4>
                     <ul class="footer-links">
                         <li><strong>Email: </strong><a href="mailto:kormendine.a.judit@gmail.com">kormendine.a.judit@gmail.com</a></li>
-                        <li><strong>Telefon: </strong><a href="tel:+361234567">+36 30 479 0925</a></li>
+                        <li><strong>Telefon: </strong><a href="tel:+36304790925">+36 30 479 0925</a></li>
                         <li class="footer-social-line">
                             <a href="https://www.facebook.com/eletkertjudittal" target="_blank" rel="noopener" class="footer-social-link" aria-label="Életkert Facebook oldal">
                                 <svg class="social-icon fb-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" width="20" height="20" aria-hidden="true" focusable="false"><path d="M240 363.3L240 576L356 576L356 363.3L442.5 363.3L460.5 265.5L356 265.5L356 230.9C356 179.2 376.3 159.4 428.7 159.4C445 159.4 458.1 159.8 465.7 160.6L465.7 71.9C451.4 68 416.4 64 396.2 64C289.3 64 240 114.5 240 223.4L240 265.5L174 265.5L174 363.3L240 363.3z"/></svg>

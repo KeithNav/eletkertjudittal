@@ -81,6 +81,19 @@ function Test-Site {
     if (-not $ok) { $failed = $true }
     Write-Host ('  {0,-28} {1}' -f $path, $code) -ForegroundColor $(if ($ok) { 'Green' } else { 'Red' })
   }
+  $redirects = @(
+    @{ Url = "$Site/index.html"; Want = '301'; Label = '/index.html -> / (301)' },
+    @{ Url = "$Site/galeria.html"; Want = '301'; Label = '/galeria.html -> /galeria (301)' },
+    @{ Url = 'https://www.eletkertjudittal.hu/'; Want = '301'; Label = 'www -> apex (301)' },
+    @{ Url = 'http://eletkertjudittal.hu/'; Want = '301'; Label = 'http -> https (301)' },
+    @{ Url = "$Site/nincs-ilyen-oldal"; Want = '404'; Label = 'ismeretlen URL (404)' }
+  )
+  foreach ($c in $redirects) {
+    $code = Get-StatusCode $c.Url
+    $ok = $code -eq $c.Want
+    if (-not $ok) { $failed = $true }
+    Write-Host ('  {0,-28} {1}' -f $c.Label, $code) -ForegroundColor $(if ($ok) { 'Green' } else { 'Red' })
+  }
   $admin = Get-StatusCode "$StrapiSite/admin"
   $adminOk = $admin -eq '200'
   if (-not $adminOk) { $failed = $true }
@@ -102,7 +115,7 @@ function Deploy-Frontend {
   }
 
   $dist = Join-Path $FrontendDir 'dist'
-  foreach ($page in 'index.html', 'galeria.html', 'receptek.html', 'impresszum.html', 'adatkezelesi-tajekoztato.html') {
+  foreach ($page in 'index.html', 'galeria.html', 'receptek.html', 'impresszum.html', 'adatkezelesi-tajekoztato.html', '404.html') {
     if (-not (Test-Path (Join-Path $dist $page))) { throw "Hianyzik a dist\$page, a build nem keszult el teljesen." }
   }
 
@@ -163,6 +176,8 @@ else
   exit 1
 fi
 '@
+  # A reload aszinkron: a regi workerek meg pillanatokig a regi konfiggal valaszolhatnak.
+  Start-Sleep -Seconds 3
 }
 
 function Deploy-Backend {

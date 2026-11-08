@@ -3,7 +3,7 @@
 /* Header basic styles */
 header {
     background-color: #f2e8cf9c;
-    background-image: url('/stand.jpg');
+    background-image: url('/stand-1600.webp');
     background-size: cover;
     background-position: center;
     background-blend-mode: overlay;
@@ -12,6 +12,13 @@ header {
     position: relative;
     overflow: hidden;
     min-height: 500px;
+}
+
+/* Keskenyebb kijelzőn kisebb háttérkép elég */
+@media (max-width: 800px) {
+    header {
+        background-image: url('/stand-800.webp');
+    }
 }
 
 /* Site logo styles */

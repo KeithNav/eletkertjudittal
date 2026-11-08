@@ -39,8 +39,13 @@ elérési útra.
 **nginx:** a `deploy\nginx-eletkert-frontend.conf` és `deploy\nginx-eletkert-strapi.conf` fájlok feltöltése a
 szerveren a `/etc/nginx/sites-available/frontend` és `/etc/nginx/sites-available/strapi` helyére. Előtte mentés
 készül (`/root/backups/eletkert/nginx-*-<idő>.conf`), `nginx -t` ellenőriz, és hibás konfig esetén a script
-automatikusan visszaállítja a régit. A certbot által kezelt SSL sorok (`# managed by Certbot`) a fájlban
-maradnak; a tanúsítvány megújítása nem érinti.
+automatikusan visszaállítja a régit. A frontend site-konfig tartalmazza: HTTP/2, gzip (CSS/JS/SVG/JSON/XML),
+hosszú gyorsítótár a `/assets/` (hash-es fájlnevek) és a képek alatt, `no-cache` a HTML-re, biztonsági fejlécek + HSTS,
+a `www` → `eletkertjudittal.hu` és `http` → `https` átirányítást, a duplikált URL-ek (`/index.html`, `/oldal.html`)
+301-es átirányítását, és egyedi 404 oldalt (`public\404.html`, `noindex`). A certbot által kezelt SSL sorok
+(`# managed by Certbot`) a fájlban maradnak; a tanúsítvány (`eletkertjudittal.hu`, `www.` és `strapi.` nevekkel)
+megújítása nem érinti. Megjegyzés: a HTTP/2 a `0.0.0.0:443` socketre vonatkozik, ezért a szerveren lévő másik oldal
+(bellawellfizio.hu) is HTTP/2-n érhető el.
 
 ## Kulcs és hozzáférés
 
