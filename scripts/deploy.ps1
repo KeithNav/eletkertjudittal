@@ -26,7 +26,12 @@ $OtherSite = 'https://bellawellfizio.hu'
 $Key = if ($env:ELETKERT_DEPLOY_KEY) { $env:ELETKERT_DEPLOY_KEY } else { Join-Path $HOME '.ssh\eletkert_deploy' }
 $Root = Split-Path $PSScriptRoot -Parent
 $FrontendDir = Join-Path $Root 'eletkert'
-$BackendDir = if ($env:ELETKERT_BACKEND_PATH) { $env:ELETKERT_BACKEND_PATH } else { Join-Path (Split-Path $Root -Parent) 'Életkert_v2.0admin\eletkertadmin' }
+$BackendDir = $env:ELETKERT_BACKEND_PATH
+if (-not $BackendDir) {
+  # Ekezet nelkuli kereses: a script fajl kodolasa (BOM nelkuli UTF-8) miatt nem szerepelhet benne ekezetes mappanev.
+  $adminRoot = Get-ChildItem (Split-Path $Root -Parent) -Directory -Filter '*v2.0admin' -ErrorAction SilentlyContinue | Select-Object -First 1
+  if ($adminRoot) { $BackendDir = Join-Path $adminRoot.FullName 'eletkertadmin' }
+}
 $SshOpts = @('-i', $Key, '-o', 'IdentitiesOnly=yes', '-o', 'BatchMode=yes', '-o', 'ConnectTimeout=15')
 
 function Write-Step([string]$Text) { Write-Host "==> $Text" -ForegroundColor Cyan }
@@ -161,9 +166,24 @@ fi
 }
 
 function Deploy-Backend {
-  if (-not (Test-Path $BackendDir)) {
-    throw "Nem talalom a backend (eletkertadmin) mappat: $BackendDir`nAllitsd be az ELETKERT_BACKEND_PATH kornyezeti valtozot, ha mas helyen van."
+  if (-not $BackendDir -or -not (Test-Path $BackendDir)) {
+    throw "Nem talalom a backend (eletkertadmin) mappat.`nAllitsd be az ELETKERT_BACKEND_PATH kornyezeti valtozot a teljes eleresi utra."
   }
+  Write-Step 'Backend repo ellenorzese (tiszta munkakonyvtar, nincs lemaradas az origin mogott)'
+  Push-Location $BackendDir
+  try {
+    Invoke-Native 'git fetch' { git fetch origin }
+    $dirty = git status --porcelain
+    if ($dirty) { throw "A backend munkakonyvtar nem tiszta (commitold vagy stash-eld):`n$($dirty -join "`n")" }
+    $branch = (git rev-parse --abbrev-ref HEAD).Trim()
+    $behind = (git rev-list --count "HEAD..origin/$branch").Trim()
+    if ($behind -ne '0') { throw "A helyi $branch $behind committal le van maradva az origin/$branch mogott (git pull kell). Igy a deploy visszaallitana regebbi kodot az elesre." }
+    $ahead = (git rev-list --count "origin/$branch..HEAD").Trim()
+    if ($ahead -ne '0') { Write-Host "  Figyelem: $ahead nem pusholt commit is benne lesz a deployban." -ForegroundColor Yellow }
+  } finally {
+    Pop-Location
+  }
+
   Write-Step 'Strapi build'
   $archive = Join-Path $env:TEMP 'eletkert-backend.tgz'
   Push-Location $BackendDir

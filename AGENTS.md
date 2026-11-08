@@ -18,9 +18,9 @@ powershell -ExecutionPolicy Bypass -File scripts\deploy.ps1 -CheckOnly       # a
 - A script a kulcsot a `~/.ssh/eletkert_deploy` fájlból olvassa (vagy az `ELETKERT_DEPLOY_KEY` változóból). Ha
   hiányzik, mondd meg a felhasználónak; a kulcsot ne generáld újra és ne keress vele kerülőutat.
 - A backend repo alapértelmezetten a `..\Életkert_v2.0admin\eletkertadmin` mappában van (az `ELETKERT_BACKEND_PATH`
-  változóval felülírható). **Backend deploy előtt ellenőrizd, hogy a `npm run build` ott helyben sikeresen
-  lefut** – a helyi munkakönyvtár jelenleg committálatlan, félbehagyott függőség-frissítést tartalmaz és a build
-  hibázik (lásd DEPLOY.md „Ismert probléma”).
+  változóval felülírható). A script megáll, ha a backend repo nem tiszta vagy le van maradva az origin mögött
+  (az éles Strapi 5.23, a helyi mappa jelenleg régi ágon áll – lásd DEPLOY.md „Backend deploy”). Ne kerüld meg ezt a
+  védelmet: a deploy a szerver kódját a helyi mappa tartalmára cseréli.
 - Csak akkor deployolj, ha a felhasználó kéri. A deploy után a script kimenete mutatja az ellenőrzést; ha hibát
   jelez, jelezd.
 - Teljes leírás (szerver felépítése, kulcs, új gép): [DEPLOY.md](DEPLOY.md).

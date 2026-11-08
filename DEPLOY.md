@@ -78,12 +78,15 @@ ssh-keygen -t ed25519 -f $HOME\.ssh\eletkert_deploy -C "eletkert-deploy" -N '""'
 `bellawell` felhasználó alatt), valamint egy Minecraft szerver (`:25565`, sok RAM-ot használ). A szerveren 2 GB
 swap van.
 
-## Ismert, a deploytól független probléma
+## Backend deploy – fontos előfeltétel
 
-A helyi `eletkertadmin` (backend) munkakönyvtárban `npm run build` jelenleg **hibával leáll**
-(`@strapi/plugin-cloud` 5.x és a `@strapi/strapi` 4.25.x / `react-router-dom` 6.x / `styled-components` 6.x
-verziók nem kompatibilisek egymással). A helyi repo emellett nincs commitolva (`package.json`,
-`package-lock.json` módosítva, `vercel.json` törölve – egy korábbi, befejezetlen frissítési kísérlet, lásd a
-`repair2.0` commitot), és el is tért az éles szerveren futó commit-tól (`ad21e6d`). A `-Target backend` ill.
-`-Target all` deploy csak azután fusson le, hogy ezt valaki megjavította és a build helyben sikeresen lefut
-(`cd ..\Életkert_v2.0admin\eletkertadmin; npm run build`). A frontend deploy ettől függetlenül működik.
+A szerveren a Strapi **5.23** fut (`/root/apps/eletkertadmin`, az `origin/master` `ad21e6d` utáni állapota, `recept`
+és `picture` API-val). A `-Target backend` a helyi mappa tartalmával **lecseréli** a szerver `src`, `config`,
+`dist` stb. mappáit, ezért a script megáll, ha a helyi backend repo:
+- nem tiszta (commitolatlan változás van benne), vagy
+- le van maradva az `origin/<ág>` mögött.
+
+A helyi `eletkertadmin` mappa jelenleg egy régi, eltérő ágon áll (Strapi 5.22, `repair2.0` commit, félkész
+függőség-módosítások; a távoli `master` közben át lett írva). Backend deploy előtt a helyi mappát rendbe kell tenni
+(pl. a félkész változtatások félretétele, majd a távoli `master` kicsekkolása), és ellenőrizni, hogy
+`npm run build` helyben sikeresen lefut. A frontend deploy ettől független.
